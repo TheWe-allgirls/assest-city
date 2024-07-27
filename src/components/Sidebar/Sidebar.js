@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../../assets/city-assets.png'
 import './Sidebar.css'
-import Home from '../../pages/Home/Home'
+import Home from '../../pages/Home/Home';
+import Rewards from '../../pages/Rewards/Rewards';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const SidebarContainer = styled.div`
   height: 100vh; // Full height of the viewport
@@ -42,7 +44,20 @@ const Sidebar = () => {
       <SidebarTitle>
         <img className='logo-img' src={logo} alt="Logo" height={160} width={160}/>
       </SidebarTitle>
-      <SidebarItem to="/">Home</SidebarItem>
+
+      <Dropdown>
+      <Dropdown.Toggle variant="warning" id="dropdown-basic">
+        Asset Analytics
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+
+      <SidebarItem to="/asset-analytics">Asset Analytics</SidebarItem>
       <SidebarItem to="/asset-management">Asset Management</SidebarItem>
       <SidebarItem to="/asset-tracking">Asset Tracking</SidebarItem>
       <SidebarItem to="/rewards">Rewards</SidebarItem>

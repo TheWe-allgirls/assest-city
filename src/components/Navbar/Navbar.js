@@ -47,18 +47,21 @@ const NavbarComponent = () => {
           </Nav.Link>
           <Nav.Link
             as={Link}
-            to="/login"
-            className={location.pathname === '/login' ? 'active' : ''}
+            to="/track-report"
+            className={location.pathname === '/track-report' ? 'active' : ''}
           >
-            Login
+            Track Report Status
           </Nav.Link>
           <Nav.Link
             as={Link}
-            to="/register"
-            className={location.pathname === '/register' ? 'active' : ''}
+            to="/future-idea"
+            className={location.pathname === '/future-idea' ? 'active' : ''}
           >
-            Register
+            Future Idea
           </Nav.Link>
+          
+          
+          
         </Nav>
       </Navbar.Collapse>
     </Navbar>

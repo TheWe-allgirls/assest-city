@@ -1,0 +1,18 @@
+/* AssetAnalytics.css */
+.dashboard-card {
+  margin-bottom: 20px;
+}
+
+.dashboard-full-width-card {
+  margin-bottom: 20px;
+}
+
+.map-container {
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.leaflet-map {
+  height: 100%;
+  width: 100%;
+}
