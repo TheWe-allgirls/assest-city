@@ -6,8 +6,6 @@ const QueryBoard = () => {
     const [filteredIssues, setFilteredIssues] = useState([]);
 
     useEffect(() => {
-        // Mock fetch for demonstration
-        // Replace this with actual fetch call if needed
         const fetchIssues = async () => {
             const data = [
                 { id: 1, name: 'Street Light Not Working', upvotes: 10, genuine_count: 2 },
@@ -15,8 +13,8 @@ const QueryBoard = () => {
                 { id: 3, name: 'Garbage Collection Delay', upvotes: 7, genuine_count: 3 },
                 { id: 4, name: 'Broken Sidewalk', upvotes: 8, genuine_count: 0 },
                 { id: 5, name: 'Water Supply Issue', upvotes: 3, genuine_count: 4 },
-                { id: 6, name: 'Street dogs', upvotes: 10, genuine_count: 2 },
-                { id: 7, name: 'Pothole on bridges', upvotes: 5, genuine_count: 1 },
+                { id: 6, name: 'Street Dogs', upvotes: 10, genuine_count: 2 },
+                { id: 7, name: 'Pothole on Bridges', upvotes: 5, genuine_count: 1 },
             ];
             setIssuesData(data);
             setFilteredIssues(data);
@@ -25,22 +23,28 @@ const QueryBoard = () => {
         fetchIssues();
     }, []);
 
-    const handleUpvote = (issueId) => {
+    const updateIssueCounts = (issueId, field) => {
         setIssuesData((prevIssues) => {
-            const updatedIssues = prevIssues.map(issue =>
-                issue.id === issueId ? { ...issue, upvotes: issue.upvotes + 1 } : issue
-            );
+            const updatedIssues = prevIssues.map(issue => {
+                if (issue.id === issueId) {
+                    return {
+                        ...issue,
+                        [field]: issue[field] + 1
+                    };
+                }
+                return issue;
+            }).sort((a, b) => b.upvotes - a.upvotes);
+            setFilteredIssues(updatedIssues);
             return updatedIssues;
         });
     };
 
+    const handleUpvote = (issueId) => {
+        updateIssueCounts(issueId, 'upvotes');
+    };
+
     const handleMarkGenuine = (issueId) => {
-        setIssuesData((prevIssues) => {
-            const updatedIssues = prevIssues.map(issue =>
-                issue.id === issueId ? { ...issue, genuine_count: issue.genuine_count + 1 } : issue
-            );
-            return updatedIssues;
-        });
+        updateIssueCounts(issueId, 'genuine_count');
     };
 
     const handleSearch = (event) => {
@@ -52,8 +56,8 @@ const QueryBoard = () => {
     };
 
     return (
-        <>
-            
+        <div className="query-board">
+           
             <main>
                 <section className="issue-list">
                     <h2>Citizen Issues</h2>
@@ -66,16 +70,24 @@ const QueryBoard = () => {
                     <ul id="issues">
                         {filteredIssues.map(issue => (
                             <li key={issue.id}>
-                                {issue.name} - <strong>{issue.upvotes}</strong> Upvotes | <strong>{issue.genuine_count}</strong> Genuine Count
-                                <button onClick={() => handleUpvote(issue.id)}>Upvote</button>
-                                <button className="genuine-button" onClick={() => handleMarkGenuine(issue.id)}>Mark as Genuine</button>
+                                <div className="issue-details">
+                                    <span>{issue.name}</span>
+                                    <div className="issue-stats">
+                                        <span><strong>{issue.upvotes}</strong> Upvotes</span>
+                                        <span><strong>{issue.genuine_count}</strong> Genuine</span>
+                                    </div>
+                                </div>
+                                <div className="issue-actions">
+                                    <button onClick={() => handleUpvote(issue.id)}>Upvote</button>
+                                    <button className="genuine-button" onClick={() => handleMarkGenuine(issue.id)}>Mark as Genuine</button>
+                                </div>
                             </li>
                         ))}
                     </ul>
                 </section>
             </main>
-
-        </>
+            
+        </div>
     );
 };
 

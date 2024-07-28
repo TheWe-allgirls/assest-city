@@ -1,4 +1,3 @@
-// src/pages/Scheme/Scheme.js
 import React from 'react';
 import './Scheme.css'; // Import the CSS file for styling
 import a from '../../assets/a.jpg';
@@ -11,6 +10,7 @@ import f from '../../assets/scheme6.jpg';
 const Scheme = () => {
   return (
     <div>
+      
       <div className="card-list">
         <a href="#" className="card-item">
           <img src={a} alt="Card Image" />
@@ -31,7 +31,7 @@ const Scheme = () => {
         <a href="#" className="card-item">
           <img src={c} alt="Card Image" />
           <span className="editor">Locality</span>
-          <h3>Over 100 Houses demolished in Justice Nagar Extension Area</h3>
+          <h3>Over 100 Houses Demolished in Justice Nagar Extension Area</h3>
           <div className="arrow">
             <i className="fas fa-arrow-right card-icon"></i>
           </div>
@@ -39,7 +39,7 @@ const Scheme = () => {
         <a href="#" className="card-item">
           <img src={d} alt="Card Image" />
           <span className="developer">Medical</span>
-          <h3>DAVV Lokpal to address report against colleges</h3>
+          <h3>DAVV Lokpal to Address Report Against Colleges</h3>
           <div className="arrow">
             <i className="fas fa-arrow-right card-icon"></i>
           </div>
@@ -47,7 +47,7 @@ const Scheme = () => {
         <a href="#" className="card-item">
           <img src={e} alt="Card Image" />
           <span className="developer">Medical</span>
-          <h3>25-Years Old dies By suicide in Indore</h3>
+          <h3>25-Year-Old Dies By Suicide in Indore</h3>
           <div className="arrow">
             <i className="fas fa-arrow-right card-icon"></i>
           </div>
@@ -55,13 +55,12 @@ const Scheme = () => {
         <a href="#" className="card-item">
           <img src={f} alt="Card Image" />
           <span className="developer">Educational</span>
-          <h3>100% Seats Alloted in Most BEd colleges in Indore</h3>
+          <h3>100% Seats Allotted in Most BEd Colleges in Indore</h3>
           <div className="arrow">
             <i className="fas fa-arrow-right card-icon"></i>
           </div>
         </a>
       </div>
-      
       
     </div>
   );

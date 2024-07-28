@@ -23,7 +23,7 @@ const AnomalyDetection = () => {
       assetId: 'PW123',
       problem: 'High fluctuation in usage',
       solution: 'Inspect asset',
-      budget: '$500',
+      budget: 'Rs 500000',
     },
     {
       key: '2',
@@ -31,7 +31,7 @@ const AnomalyDetection = () => {
       assetId: 'T456',
       problem: 'Sudden drop in performance',
       solution: 'Replace component',
-      budget: '$1200',
+      budget: 'Rs 1500000',
     },
     {
       key: '3',
@@ -39,7 +39,7 @@ const AnomalyDetection = () => {
       assetId: 'PR789',
       problem: 'Irregular activity pattern',
       solution: 'Recalibrate sensors',
-      budget: '$300',
+      budget: 'Rs 50000',
     },
   ];
 

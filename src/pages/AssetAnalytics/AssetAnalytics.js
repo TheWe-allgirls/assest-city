@@ -38,7 +38,7 @@ const sensorData = [
   { id: 3, name: 'Sensor 3', type: 'Air Quality', value: 85, latitude: 51.515, longitude: -0.08 },
 ];
 
-const AssetAnalytics = () => {
+const AssetPerformance = () => {
   const [selectedAssetType, setSelectedAssetType] = useState('vehicles');
 
   const columns = [
@@ -74,45 +74,35 @@ const AssetAnalytics = () => {
         <Card title="Asset Utilization" className="dashboard-card" style={{ marginBottom: '20px' }}>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
-              <Pie dataKey="value" data={assetUtilizationData} fill="#8884d8" label />
+              <Pie data={assetUtilizationData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label />
               <Tooltip />
+              <Legend />
             </PieChart>
           </ResponsiveContainer>
         </Card>
 
         <Card title="Maintenance Logs" className="dashboard-card" style={{ marginBottom: '20px' }}>
-          <Table dataSource={maintenanceLogsData} columns={columns} pagination={{ pageSize: 5 }} />
+          <Table dataSource={maintenanceLogsData} columns={columns} rowKey="id" />
         </Card>
 
-        <Card title="Sensor Data" className="dashboard-card">
-          <div className="map-container">
-            <MapContainer center={[51.505, -0.09]} zoom={13} className="leaflet-map">
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              {sensorData.map((sensor) => (
-                <Marker key={sensor.id} position={[sensor.latitude, sensor.longitude]}>
-                  <Popup>
-                    {sensor.name}<br />
-                    Type: {sensor.type}<br />
-                    Value: {sensor.value}
-                  </Popup>
-                </Marker>
-              ))}
-            </MapContainer>
-          </div>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={sensorData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="value" fill="#82ca9d" />
-            </BarChart>
-          </ResponsiveContainer>
+        <Card title="Sensor Locations" className="dashboard-card">
+          <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '300px', width: '100%' }}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+            />
+            {sensorData.map(sensor => (
+              <Marker key={sensor.id} position={[sensor.latitude, sensor.longitude]}>
+                <Popup>
+                  {sensor.name} - {sensor.type}: {sensor.value}
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
         </Card>
       </Content>
     </Layout>
   );
 };
 
-export default AssetAnalytics;
+export default AssetPerformance;

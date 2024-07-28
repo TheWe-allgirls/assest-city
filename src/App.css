@@ -49,3 +49,54 @@ button:hover {
   background-color: #ADBBDA;
   color:#222;
 }
+
+
+
+
+
+
+/* App.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 60px; /* Adjust to match Navbar height */
+  width: 250px;
+  height: calc(100vh - 60px);
+  background-color: #001529;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar .ant-menu {
+  background: none;
+}
+
+.sidebar .ant-menu-item {
+  color: #fff;
+}
+
+.toast {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #f5222d;
+  color: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.toast.show {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.toast {
+  opacity: 0;
+}

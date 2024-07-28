@@ -1,12 +1,14 @@
 // src/components/Navbar.js
 import React from 'react';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css'; // Import your custom CSS file
 import styled from 'styled-components';
-
-
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import logo from '../../assets/logo.png'
 
 const NavbarComponent = () => {
   const location = useLocation(); // Get current location
@@ -17,6 +19,11 @@ const NavbarComponent = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
+          
+
+           {/* <img className='logo-imgg' src={logo} alt="Logo" height={160} width={160}/>
+
+           */}
           <Nav.Link
             as={Link}
             to="/chatbot"
@@ -54,11 +61,29 @@ const NavbarComponent = () => {
           </Nav.Link>
           <Nav.Link
             as={Link}
-            to="/future-idea"
-            className={location.pathname === '/future-idea' ? 'active' : ''}
+            to="/rewards"
+            className={location.pathname === '/rewards' ? 'active' : ''}
           >
-            Future Idea
+            Rewards
           </Nav.Link>
+
+            
+          <Nav.Link
+            as={Link}
+            to="/login-as-admin"
+            className={location.pathname === '/login-as-admin' ? 'active' : ''}
+          >
+            Login as ADMIN
+          </Nav.Link>
+ 
+
+          {/* <Nav.Link
+            as={Link}
+            to="/login-as-admin"
+            className={location.pathname === '/login-as-admin' ? 'active' : ''}
+          >
+            Login as ADMIN
+          </Nav.Link> */}
           
           
           

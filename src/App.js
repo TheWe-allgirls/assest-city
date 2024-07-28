@@ -1,24 +1,25 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom'; 
+import React, { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './pages/Home/Home';
-import QueryBoard from './pages/QueryBoard/QueryBoard'
+import QueryBoard from './pages/QueryBoard/QueryBoard';
 import Scheme from './pages/Scheme/Scheme';
 import Chatbot from './pages/Chatbot/Chatbot';
 import Report from './pages/Report/Report';
 import Navbar from './components/Navbar/Navbar';
-import Rewards from './pages/Rewards/Rewards'
+import Rewards from './pages/Rewards/Rewards';
 import Sidebar from './components/Sidebar/Sidebar';
 import styled from 'styled-components';
-import AssetAnalytics from './pages/AssetAnalytics/AssetAnalytics'
+import AssetAnalytics from './pages/AssetAnalytics/AssetAnalytics';
 import AnamolyDetection from './pages/AnamolyDetection/AnamolyDetection';
 import AssetManagement from './pages/AssetManagement/AssetManagement';
 import AssetTracking from './pages/AssetTracking/AssetTracking';
 import './App.css';
 import TrackReport from './pages/TrackReport/TrackReport';
-import FutureIdea from './pages/FutureIdea/FutureIdea'
+import FutureIdea from './pages/FutureIdea/FutureIdea';
+import LoginAsAdmin from './pages/LoginAsAdmin/LoginAsAdmin';
 
 const MainContent = styled.div`
-  margin-left: 250px; // Adjust for sidebar width
+  margin-left: ${(props) => (props.loggedIn ? '250px' : '0')}; // Adjust for sidebar width if logged in
   margin-top: 60px; // Adjust for navbar height
   padding: 20px;
   height: calc(100vh - 60px); // Subtract navbar height from the full viewport height
@@ -26,11 +27,19 @@ const MainContent = styled.div`
 `;
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+    navigate('/'); // Redirect to the home page after successful login
+  };
+
   return (
     <>
-      <Sidebar />
+      {loggedIn && <Sidebar />}
       <Navbar />
-      <MainContent>
+      <MainContent loggedIn={loggedIn}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/query-board" element={<QueryBoard />} />
@@ -44,7 +53,7 @@ function App() {
           <Route path="/asset-tracking" element={<AssetTracking />} />
           <Route path="/track-report" element={<TrackReport />} />
           <Route path="/future-idea" element={<FutureIdea />} />
-          
+          <Route path="/login-as-admin" element={<LoginAsAdmin onLogin={handleLogin} />} />
         </Routes>
       </MainContent>
     </>

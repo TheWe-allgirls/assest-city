@@ -51,17 +51,18 @@ const Sidebar = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        <Dropdown.Item to="/asset-performance">Asset Performance</Dropdown.Item>
+        <Dropdown.Item to="/asset-utilization" >Asset Utilization</Dropdown.Item>
+        <Dropdown.Item href="/sensor-data">Sensor Data</Dropdown.Item>
+        <Dropdown.Item href="/maintenance-logs">Maintenance Logs</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
 
       <SidebarItem to="/asset-analytics">Asset Analytics</SidebarItem>
       <SidebarItem to="/asset-management">Asset Management</SidebarItem>
       <SidebarItem to="/asset-tracking">Asset Tracking</SidebarItem>
-      <SidebarItem to="/rewards">Rewards</SidebarItem>
-      <SidebarItem to="/anamoly-detection">Anamoly Detection</SidebarItem>
+      <SidebarItem to="/anamoly-detection">Anomaly Detection</SidebarItem>
+      <SidebarItem to="/rewards">Future Idea</SidebarItem>
     </SidebarContainer>
   );
 };

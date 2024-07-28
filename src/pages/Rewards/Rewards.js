@@ -1,81 +1,64 @@
 import React, { useEffect } from 'react';
 import './Rewards.css';
 
-const Rewards = () => {
+import { Navbar, Nav, NavItem, NavLink } from 'reactstrap'; // For reactstrap
+
+const RewardsSystem = () => {
+    const rewards = [
+        { name: 'Gift Voucher', requiredCoins: 100, currentCoins: 50 },
+        { name: 'Special Citizen Badge', requiredCoins: 200, currentCoins: 120 },
+        { name: 'Bonus Leave Day', requiredCoins: 150, currentCoins: 80 },
+        { name: 'Monthly Bonus', requiredCoins: 300, currentCoins: 250 },
+        { name: 'Special Staff Reward', requiredCoins: 500, currentCoins: 400 }
+    ];
+
     useEffect(() => {
-        // Add logic to fetch and display reward data dynamically if needed
-        console.log('Rewards page loaded');
+        renderRewards();
     }, []);
 
+    const renderRewards = () => {
+        return rewards.map((reward, index) => (
+            <li key={index} className="reward-item">
+                <strong>{reward.name}</strong><br />
+                <span>Coins Needed: {reward.requiredCoins - reward.currentCoins}</span>
+                <div className="progress-bar-container">
+                    <div className="progress-bar" style={{ width: `${Math.min((reward.currentCoins / reward.requiredCoins) * 100, 100)}%` }}></div>
+                </div>
+            </li>
+        ));
+    };
+
     return (
-        <>
-            <header>
-                <img src="/images/logo.png" alt="AssetHub Logo" className="logo" />
-                <nav>
-                    <ul>
-                        <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/issues">Issues</a></li>
-                        <li><a href="/assets">Assets</a></li>
-                        <li><a href="/rewards">Rewards</a></li>
-                        <li><a href="/news">News</a></li>
-                        <li><a href="/schemes">Schemes</a></li>
-                        <li><a href="/profile">Profile</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <aside>
-                <ul>
-                    <li><a href="/report">Report Issue</a></li>
-                    <li><a href="/tracking">Status Tracking</a></li>
-                    <li><a href="/feedback">Feedback</a></li>
-                </ul>
-            </aside>
-
+        <div>
+            
             <main>
-                <section id="rewards">
-                    <h1>Rewards</h1>
-                    <div className="rewards-section">
-                        <h2>For Citizens</h2>
-                        <div className="rewards-citizens">
-                            <div className="reward">
-                                <h3>Top Reporter</h3>
-                                <p>Recognizes the citizen who reported the most issues this month.</p>
-                            </div>
-                            <div className="reward">
-                                <h3>Community Helper</h3>
-                                <p>Awarded to citizens who have contributed to resolving issues.</p>
-                            </div>
-                            <div className="reward">
-                                <h3>Green Champion</h3>
-                                <p>Given to citizens promoting sustainability and eco-friendly practices.</p>
-                            </div>
-                        </div>
-
-                        <h2>For Municipal Staff</h2>
-                        <div className="rewards-staff">
-                            <div className="reward">
-                                <h3>Employee of the Month</h3>
-                                <p>Recognizes the staff member with outstanding performance.</p>
-                            </div>
-                            <div className="reward">
-                                <h3>Innovation Award</h3>
-                                <p>Awarded to staff members who introduce innovative solutions.</p>
-                            </div>
-                            <div className="reward">
-                                <h3>Team Player</h3>
-                                <p>Given to staff members who exhibit excellent teamwork.</p>
-                            </div>
-                        </div>
+                <div className="card-container">
+                    <div className="card">
+                        <h2>Rewards</h2>
+                        <ul id="rewards-list">
+                            {renderRewards()}
+                        </ul>
                     </div>
-                </section>
+                    <div className="card">
+                        <h2>Criteria</h2>
+                        <ul>
+                            <li>Submit justified and unique issues.</li>
+                            <li>Ensure the issue status is marked as done.</li>
+                            <li>Complete work before the deadline for staff members.</li>
+                            <li>Participate in community activities.</li>
+                            <li>Provide constructive feedback on resolved issues.</li>
+                            <li>Volunteer for city improvement projects.</li>
+                            <li>Engage in city clean-up drives.</li>
+                            <li>Report illegal activities and hazards.</li>
+                            <li>Participate in public meetings and forums.</li>
+                            <li>Support local events and campaigns.</li>
+                        </ul>
+                    </div>
+                </div>
             </main>
-
-            <footer>
-                <p>&copy; 2024 AssetHub. All rights reserved.</p>
-            </footer>
-        </>
+           
+        </div>
     );
 };
 
-export default Rewards;
+export default RewardsSystem;
