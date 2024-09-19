@@ -1,45 +1,3 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-
-// const ChatQuery = () => {
-//   const [query, setQuery] = useState('');
-
-//   const handleInputChange = (e) => {
-//     setQuery(e.target.value);
-//   };
-
-//   const sendQuery = async () => {
-//     try {
-//       const response = await axios.post(
-//         `https://hackndore.onrender.com/chat?query=${query}`,
-//         {},
-//         {
-//           headers: {
-//             'accept': 'application/json'
-//           }
-//         }
-//       );
-//       console.log(response.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Chat Query</h1>
-//       <input
-//         type="text"
-//         value={query}
-//         onChange={handleInputChange}
-//         placeholder="Enter your query"
-//       />
-//       <button onClick={sendQuery}>Send Query</button>
-//     </div>
-//   );
-// };
-
-// export default ChatQuery;
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -104,38 +62,64 @@ const Button = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+
+  &:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+`;
+
+const Loader = styled.div`
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid #007BFF;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+  margin-left: 10px;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 `;
 
 const ChatQuery = () => {
   const [query, setQuery] = useState('');
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
   };
 
   const sendQuery = async () => {
-    if (query.trim() === '') return;
+    if (query.trim() === '' || loading) return;
+    setLoading(true);
     const userMessage = { isUser: true, text: query };
     setMessages([...messages, userMessage]);
     setQuery('');
 
     try {
       const response = await axios.post(
-        `https://hackndore.onrender.com/chat?query=${query}`,
-        {},
+        `https://hackndore.onrender.com/chat`,
+        { query: query },
         {
           headers: {
             'accept': 'application/json'
           }
         }
       );
+
       const botMessage = { isUser: false, text: response.data.response };
       setMessages([...messages, userMessage, botMessage]);
     } catch (error) {
-      console.error(error);
+      console.error('Error response:', error.response);
+      console.error('Error message:', error.message);
       const botMessage = { isUser: false, text: 'Sorry, something went wrong. Please try again later.' };
       setMessages([...messages, userMessage, botMessage]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -154,9 +138,13 @@ const ChatQuery = () => {
           type="text"
           value={query}
           onChange={handleInputChange}
-          placeholder="Enter your query"
+          placeholder="Enter your question"
+          disabled={loading}
         />
-        <Button onClick={sendQuery}>Send</Button>
+        <Button onClick={sendQuery} disabled={loading}>
+          Send
+        </Button>
+        {loading && <Loader />}
       </ChatFooter>
     </ChatContainer>
   );

@@ -62,7 +62,7 @@ const Sidebar = () => {
       <SidebarItem to="/asset-management">Asset Management</SidebarItem>
       <SidebarItem to="/asset-tracking">Asset Tracking</SidebarItem>
       <SidebarItem to="/anamoly-detection">Anomaly Detection</SidebarItem>
-      <SidebarItem to="/rewards">Future Idea</SidebarItem>
+      <SidebarItem to="/future-idea">Future Idea</SidebarItem>
     </SidebarContainer>
   );
 };

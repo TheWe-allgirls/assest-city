@@ -1,18 +1,13 @@
-/* AssetAnalytics.css */
 .dashboard-card {
   margin-bottom: 20px;
 }
 
-.dashboard-full-width-card {
-  margin-bottom: 20px;
+.ant-card-head-title {
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.map-container {
-  height: 300px;
-  margin-bottom: 20px;
-}
-
-.leaflet-map {
-  height: 100%;
-  width: 100%;
+.ant-table-thead > tr > th {
+  background-color: #f0f2f5;
+  font-weight: bold;
 }
